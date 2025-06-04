@@ -53,7 +53,7 @@ public class StackGenerico <T>{ // EL <T> indica que es un tipo generico, se pue
                 
             }
             System.out.println("");
-            System.out.println("-----------------");
+            System.out.println("----------------");
         }
 }
     
