@@ -5,9 +5,11 @@ import Controllers.QueueGenerico;
 import Models.Persona;
 import Controllers.Stack;
 import Controllers.StackGenerico;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        Scanner scanner = new Scanner(System.in);
         Stack stack = new Stack();
         stack.push(10);
         stack.push(-1);
@@ -74,7 +76,67 @@ public class App {
         queuePersonas.size();
         queuePersonas.stringQueue();
 
-    
+
+
+
+
+
+
+
+        StackGenerico <Character> StackGenericoChar = new StackGenerico<Character>();
+        StackGenerico <Character> StackGenericoChar2 = new StackGenerico<Character>();
+        
+        System.out.println("-----------------------------------------------------------");
+        char var = '1';
+        while(var != 0){
+            System.out.println("Ingrese un caracter = '(' , ')' , '{' , '}' , '[' o ']' , Para salir ingrese '0'");
+            var = scanner.next().charAt(0);
+            StackGenericoChar.push(var);;
+            StackGenericoChar.stringStack();
+            if (var == '(' || var == '{' || var == '[') {
+                StackGenericoChar.push(var);
+            } else if (var == ')' || var == '}' || var == ']') {
+                StackGenericoChar2.push(var);
+            }
+            char last = StackGenericoChar2.peek(); 
+            if ( var == '(' && last == ')' ||  var == '[' && last == ']' &&  var == '{' && last == '}'){
+                System.out.println("Paréntesis balanceados");
+                
+            } else if (var == ')' || var == '}' || var == ']') {    
+                if (StackGenericoChar.isEmpty()) {
+                    System.out.println("Error: Paréntesis desbalanceados");
+                } else {
+                    char lastChar = StackGenericoChar.pop();
+                    if ((lastChar == '(' && var != ')') || (lastChar == '{' && var != '}') || (lastChar == '[' && var != ']')) {
+                        System.out.println("Error: Paréntesis desbalanceados");
+                    } else {
+                        System.out.println("Paréntesis balanceados");
+                    }
+
+                }
+
+                /* 
+                if (!QueueGenericoChar2.isEmpty()) {
+                    char last = QueueGenericoChar2.remove();
+                    if ((last == '(' && var != ')') || (last == '{' && var != '}') || (last == '[' && var != ']')) {
+                        System.out.println("Error: Paréntesis desbalanceados");
+                    }
+                } else {
+                    System.out.println("Error: desbalanceado");
+                }
+                */
+            
+
+
+
+            if (var == '0') {
+                System.out.println("Saliendo del programa...");
+                for (int i = 0; i <= StackGenericoChar.size; i++) {
+                    System.out.println(StackGenericoChar.pop());
+                }
+                break;
+            }
+        }
         
     }
 }
